@@ -1,33 +1,50 @@
 # FMS Circle
 
-A responsive, Pinterest-inspired student marketplace for FMS Delhi. Built with JavaScript, CSS, and Vite.
+A campus marketplace for FMS Delhi students. An original editorial interface built with plain JavaScript, CSS, and Vite: forest green, vermilion, self-hosted typography, and locally bundled product photography.
 
-## Develop
+## Run
 
-Use Node.js 22 or newer.
+Node.js 22 or newer:
 
 ```sh
 npm ci --cache /workspace/.npm-cache
 npm run dev -- --port 5173
 ```
 
-## Build
-
 ```sh
+npm test
 npm run build
-npm run preview
+npm run preview -- --port 4173
 ```
 
 ## What works
 
-- Masonry-style item feed, search, categories, and price sorting
-- Saved listings retained in browser storage
-- Item detail dialogs and seller information
-- Sell form with photo upload, validation, contact information, and browser persistence
-- Responsive layouts and keyboard-accessible dialogs
+- Search by item, description, or category; category, condition, and budget filters; price and newest sorting.
+- Saved finds, item details, pickup location, and seller information.
+- Listing form with photo preview, type/size validation, free items, local persistence, and recoverable storage errors.
+- Your listings, contact disclosure/copy, and removal with confirmation.
+- Mobile bottom navigation, keyboard access, native focus-trapping dialogs, reduced-motion support, and image fallbacks.
 
 ## Prototype scope
 
-Initial listings are demonstration content. New listings and favourites are stored locally in the current browser, not shared across students. There is no authentication, payment processing, or private messaging. Before a campus launch, connect a backend with student verification, shared listing/photo storage, moderation, and private seller contact. Do not submit sensitive information to the prototype.
+Starter listings and sellers are demonstrations. Illustrative product photos were AI-generated and are not evidence of specific items for sale. Listings and favourites are saved in the current browser, not shared across students. Contact information on your listings is visible to anyone using that browser; do not enter sensitive information on a shared device.
 
-Images and fonts load from Unsplash, Pravatar, and Google Fonts and require internet access. The core interface and locally uploaded photos work without those services.
+There is no authentication, account verification, payment processing, or private messaging. A shared launch needs a backend, student verification, shared photo storage, moderation, and appropriate privacy controls. `src/storage.js` isolates persistence for that migration. Nothing is sent to an external application service today.
+
+## Project map
+
+- `src/main.js`: views, forms, navigation, and interactions.
+- `src/data.js`: demonstration inventory and categories.
+- `src/storage.js`: validated local storage, migration, and persistence.
+- `src/icons.js`: consistent authored SVG icon family.
+- `src/style.css`: layout, responsive styles, and motion.
+- `public/`: bundled photos, their prompt provenance, fonts, and licenses.
+- `tests/storage.test.js`: storage corruption, validation, migration, quota failures, and inventory checks.
+- `PRODUCT.md` and `DESIGN.md`: audience, scope, and design decisions.
+- `.agents/skills/`: installed Emil Kowalski and Impeccable guidance.
+
+## Validation
+
+Eight automated Node tests cover storage and data boundaries. Chromium functional validation covered 35 checks, including listing/photo persistence across reloads, combined filters, favourite persistence, escaped content, contact disclosure, removal, keyboard navigation, responsive widths from 320 to 1440px, and reduced motion. Home and listing-form axe checks reported zero WCAG A/AA violations. This does not establish full accessibility conformance or physical-device testing.
+
+Fonts and images are self-hosted; core pages require no external font or image network access. Image and font licenses/provenance ship alongside the assets.

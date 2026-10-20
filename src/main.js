@@ -1,30 +1,526 @@
-import './style.css';
-const icons={search:'⌕',heart:'♡',plus:'＋',close:'×'};
-const placeholder='data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="600" height="700" viewBox="0 0 600 700"><rect width="600" height="700" fill="#e9eddf"/><text x="300" y="330" text-anchor="middle" fill="#7b8b66" font-family="Georgia,serif" font-size="48">fms circle</text><text x="300" y="380" text-anchor="middle" fill="#7b8b66" font-family="Arial,sans-serif" font-size="20">A good find, photo coming later.</text></svg>');
-const photo=(id,w=700)=>`https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=85`;
-const initial=[
-{id:1,title:'Your next case-cracking companion',name:'Marketing Management · Kotler',price:650,category:'Books & notes',condition:'Like new',seller:'Aditi Sharma',batch:'MBA · Class of 2026',image:photo('photo-1544947950-fa07a98d237f'),color:'#e8e2d6',height:300,tag:'A little wisdom, passed on'},
-{id:2,title:'A desk with a little more character',name:'IKEA study desk',price:2200,category:'Room essentials',condition:'Good',seller:'Rohan Mehta',batch:'MBA · Class of 2026',image:photo('photo-1518455027359-f3f8164ba6bd'),height:240},
-{id:3,title:'For the days between deadlines',name:'Sony WH-1000XM4 headphones',price:8500,category:'Tech & gadgets',condition:'Like new',seller:'Isha Gupta',batch:'MBA · Class of 2027',image:photo('photo-1546435770-a3e426bf472b'),height:335,tag:'Campus favourite'},
-{id:4,title:'Coffee. Cases. Repeat.',name:'Ceramic coffee mug',price:180,category:'Room essentials',condition:'Like new',seller:'Kabir Jain',batch:'MBA · Class of 2026',image:photo('photo-1514228742587-6b1558fcca3d'),height:260},
-{id:5,title:'Make an entrance, ace the interview',name:'Navy interview blazer · M',price:1400,category:'Fashion',condition:'Like new',seller:'Ananya Rao',batch:'MBA · Class of 2026',image:photo('photo-1591047139829-d91aecb6caea'),height:320},
-{id:6,title:'Small corner. Big main-character energy.',name:'Warm desk lamp',price:550,category:'Room essentials',condition:'Good',seller:'Dev Arora',batch:'MBA · Class of 2027',image:photo('photo-1507473885765-e6ed057f782c'),height:290},
-{id:7,title:'A fresh perspective for your room',name:'Indoor plant with ceramic pot',price:350,category:'Room essentials',condition:'Like new',seller:'Meera Singh',batch:'MBA · Class of 2026',image:photo('photo-1485955900006-10f4d324d411'),height:330},
-{id:8,title:'Take the scenic route to campus',name:'Decathlon city bicycle',price:4200,category:'On the move',condition:'Good',seller:'Arjun Sethi',batch:'MBA · Class of 2026',image:photo('photo-1485965120184-e220f721d03e'),height:245},
-{id:9,title:'The notes you wish you’d taken',name:'First-year finance notes bundle',price:250,category:'Books & notes',condition:'Good',seller:'Sana Khan',batch:'MBA · Class of 2026',image:photo('photo-1455390582262-044cdead277a'),height:270},
-{id:10,title:'Soundtrack for your next study session',name:'JBL portable speaker',price:1900,category:'Tech & gadgets',condition:'Like new',seller:'Vikram Das',batch:'MBA · Class of 2027',image:photo('photo-1608043152269-423dbba4e7e1'),height:320}
-];
-const read=(key,fallback)=>{try{return JSON.parse(localStorage.getItem(key))??fallback}catch{return fallback}};
-let listings=[...read('fms-listings',[]),...initial],saved=new Set(read('fms-saved',[])),category='Everything',query='',view='explore',sort='recommended';
-const categories=[['Everything','✳'],['Books & notes','▤'],['Tech & gadgets','⌘'],['Room essentials','⌂'],['Fashion','♧'],['On the move','↗']];
-const money=n=>'₹'+Number(n).toLocaleString('en-IN');
-const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-document.querySelector('#app').innerHTML=`<header><a class="brand" href="#" aria-label="FMS Circle home"><span class="brand-icon">c<span>↗</span></span><span>fms<span class="brand-light">circle</span><small>THE CAMPUS MARKETPLACE</small></span></a><nav><button class="nav-link active" data-view="explore">Explore</button><button class="nav-link" data-view="saved">Saved <span id="saved-count">0</span></button></nav><div class="header-right"><span class="campus"><i></i> Made for FMS, Delhi</span><button class="primary" id="sell">＋ <span>List an item</span></button><button class="avatar" id="profile" aria-label="About your profile">Y</button></div></header><main><section class="hero"><div class="hero-copy"><span class="eyebrow"><span></span> LESS LANDFILL. MORE CAMPUS LOVE.</span><h1>Good things.<br><em>Next chapter.</em><span class="spark">✳</span></h1><p>From your senior’s bookshelf to your next favourite find.<br>Buy, sell, and pass it on — right here at FMS.</p><div class="hero-meta"><div class="avatar-stack"><img src="https://i.pravatar.cc/60?img=47" alt=""/><img src="https://i.pravatar.cc/60?img=12" alt=""/><img src="https://i.pravatar.cc/60?img=44" alt=""/></div><span>A small campus. <strong>A whole lot to discover.</strong></span></div></div><div class="hero-art"><div class="orbit"></div><div class="floating-note">One batch’s goodbye.<br>Another’s <em>great find.</em><span>↘</span></div><div class="polaroid one"><img src="${photo('photo-1544947950-fa07a98d237f',400)}" alt="Books ready for their next reader"/><span>Stories worth passing on ♡</span></div><div class="polaroid two"><img src="${photo('photo-1485955900006-10f4d324d411',400)}" alt="A leafy plant in a pot"/><span>A little room for something new.</span></div><div class="circle-stamp">PRE-LOVED<br><b>✳</b><br>RE-LOVED</div></div></section><section class="market"><div class="market-top"><div><h2 id="feed-title">Find your next good thing <span>↘</span></h2><p id="feed-description">Pre-loved by your people. Ready for you.</p></div><label class="search"><span>⌕</span><input id="search" placeholder="Try ‘books’, ‘lamp’, ‘headphones’" aria-label="Search items"/><kbd>/</kbd></label></div><div class="filters"><div class="categories">${categories.map(([name,icon])=>`<button data-category="${name}" class="chip ${name==='Everything'?'selected':''}"><span>${icon}</span>${name}</button>`).join('')}</div><label class="sort">Sort: <select id="sort" aria-label="Sort listings"><option value="recommended">For you</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option><option value="new">Newest first</option></select></label></div><div class="results-line"><span id="result-count"></span><span><i></i> Campus finds, no middlemen</span></div><div id="grid" class="grid"></div></section><section class="bottom-note"><span>✳</span><div><h3>A little less new. A lot more you.</h3><p>Give something a second life. Make someone’s campus life a little better.</p></div><button id="bottom-sell">Pass something on ↗</button></section></main><footer><a class="footer-brand" href="#">fmscircle<span> · The good goes around.</span></a><span>A student marketplace concept for FMS, Delhi · Demo listings</span><span>Made with campus love ♡</span></footer><dialog id="modal"></dialog><div id="toast" role="status"></div>`;
-const grid=document.querySelector('#grid'),modal=document.querySelector('#modal');
-function render(){let items=listings.filter(x=>(view!=='saved'||saved.has(x.id))&&(category==='Everything'||x.category===category)&&`${x.name} ${x.title} ${x.category}`.toLowerCase().includes(query));if(sort==='low')items.sort((a,b)=>a.price-b.price);if(sort==='high')items.sort((a,b)=>b.price-a.price);if(sort==='new')items.sort((a,b)=>b.id-a.id);document.querySelector('#saved-count').textContent=saved.size;document.querySelector('#result-count').textContent=`${items.length} ${view==='saved'?'saved finds':'good things to discover'}`;document.querySelector('#feed-title').innerHTML=view==='saved'?'Your little collection <span>♡</span>':'Find your next good thing <span>↘</span>';document.querySelector('#feed-description').textContent=view==='saved'?'All the things you have your eye on.':'Pre-loved by your people. Ready for you.';grid.innerHTML=items.length?items.map(x=>`<article class="card"><div class="card-image" style="height:${x.height||280}px;background:${x.color||'#e9e8e1'}"><button class="image-open" data-open="${x.id}" aria-label="View ${escape(x.name)}"><img src="${escape(x.image)}" alt="${escape(x.name)}" loading="lazy" onerror="this.style.display='none'"/></button><span class="condition">${escape(x.condition)}</span><button class="save ${saved.has(x.id)?'is-saved':''}" data-save="${x.id}" aria-label="${saved.has(x.id)?'Unsave':'Save'} ${escape(x.name)}">${saved.has(x.id)?'♥':'♡'}</button>${x.tag?`<span class="image-tag">${x.tag}</span>`:''}</div><button class="card-info" data-open="${x.id}"><div class="card-heading"><h3>${escape(x.name)}</h3><strong>${money(x.price)}</strong></div><p>${escape(x.title)}</p><div class="seller"><span class="seller-icon">${x.seller.charAt(0)}</span>${escape(x.seller)}<span class="seller-dot">·</span><span>FMS Delhi</span><span class="arrow">↗</span></div></button></article>`).join(''):`<div class="empty"><span>⌕</span><h3>${view==='saved'?'Your next favourites live here':'No finds just yet'}</h3><p>${view==='saved'?'Tap the heart on any item to save it for later.':'Try a different search or be the first to list something.'}</p><button class="primary" id="reset">Explore all items</button></div>`}
-function toast(message){const t=document.querySelector('#toast');t.textContent=message;t.classList.add('show');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.remove('show'),3000)}
-function show(content){modal.innerHTML=`<button class="close" aria-label="Close dialog">×</button>${content}`;modal.showModal();modal.querySelector('.close').onclick=()=>modal.close()}
-function detail(id){const x=listings.find(i=>i.id===id);show(`<div class="detail"><img class="detail-img" src="${escape(x.image)}" alt="${escape(x.name)}"/><div class="detail-copy"><span class="eyebrow">${escape(x.category)} · ${escape(x.condition)}</span><h2>${escape(x.name)}</h2><p class="detail-price">${money(x.price)}</p><p>${escape(x.description||x.title+'. A pre-loved campus find, ready for its next chapter. Arrange a campus meetup and check the item before paying.')}</p><div class="seller-panel"><span class="avatar">${x.seller.charAt(0)}</span><div><strong>${escape(x.seller)}</strong><p>${escape(x.batch)}</p></div></div><div class="location">⌖ FMS Delhi · Campus pickup</div><button class="primary contact" id="contact">Contact seller ↗</button><p class="safety">Meet on campus. Inspect before you pay. Keep it friendly.</p></div></div>`);document.querySelector('#contact').onclick=()=>{if(x.contact){const p=document.createElement('p');p.className='contact-value';p.textContent=x.contact;document.querySelector('#contact').replaceWith(p)}else toast('This is a sample listing. New listings show the seller’s contact here.')};}
-function sell(){show(`<form id="listing-form"><span class="eyebrow">PASS IT ON</span><h2>Someone’s next great find.</h2><p class="form-intro">A few details. A new chapter for your stuff.</p><label>Item name<input name="name" required maxlength="70" placeholder="e.g. Kotler’s Marketing Management"/></label><div class="form-row"><label>Price (₹)<input name="price" type="number" min="0" max="10000000" required placeholder="650"/></label><label>Category<select name="category">${categories.slice(1).map(([c])=>`<option>${c}</option>`).join('')}</select></label></div><label>Condition<select name="condition"><option>Like new</option><option>Good</option><option>Well loved</option></select></label><label>Photo (optional)<input name="photo" type="file" accept="image/*"/><small>Add an image up to 3 MB, or list without a photo.</small></label><label>A little about it<textarea name="description" required maxlength="800" placeholder="Condition, what’s included, and why you’re passing it on…"></textarea></label><div class="form-row"><label>Your name<input name="seller" required maxlength="60" placeholder="Your name"/></label><label>Batch<input name="batch" required placeholder="MBA · Class of 2027" maxlength="60"/></label></div><label>Contact details<input name="contact" required maxlength="150" placeholder="Email or phone for interested students"/></label><p class="form-notice">This demo saves listings in this browser only. Contact details are visible to anyone using this browser. A shared campus launch will need accounts and a database.</p><button type="submit" class="primary">Publish my listing ↗</button><p id="form-error" role="alert"></p></form>`);document.querySelector('#listing-form').onsubmit=async e=>{e.preventDefault();const f=new FormData(e.target),file=f.get('photo');if(file.size>3*1024*1024){document.querySelector('#form-error').textContent='Please choose a photo smaller than 3 MB.';return}if(file.size && !file.type.startsWith('image/')){document.querySelector('#form-error').textContent='Please choose an image file.';return}const publish=image=>{const x={id:Date.now(),name:f.get('name').trim(),price:Number(f.get('price')),category:f.get('category'),condition:f.get('condition'),description:f.get('description').trim(),title:f.get('description').trim(),seller:f.get('seller').trim(),batch:f.get('batch').trim(),contact:f.get('contact').trim(),image,height:290};try{const local=[x,...read('fms-listings',[])];localStorage.setItem('fms-listings',JSON.stringify(local));listings.unshift(x);category='Everything';query='';view='explore';document.querySelector('#search').value='';document.querySelectorAll('[data-category]').forEach(b=>b.classList.toggle('selected',b.dataset.category===category));document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===view));modal.close();render();toast('Listed! Your item is ready for its next chapter.')}catch{document.querySelector('#form-error').textContent='Browser storage is full. Try a smaller photo.'}};if(!file.size){publish(placeholder);return}const reader=new FileReader();reader.onload=()=>publish(reader.result);reader.onerror=()=>{document.querySelector('#form-error').textContent='Could not read the photo. Try another image or list without one.'};reader.readAsDataURL(file)}}
-document.addEventListener('click',e=>{const s=e.target.closest('[data-save]');if(s){const id=Number(s.dataset.save);saved.has(id)?saved.delete(id):saved.add(id);localStorage.setItem('fms-saved',JSON.stringify([...saved]));render();return}const o=e.target.closest('[data-open]');if(o)detail(Number(o.dataset.open));const c=e.target.closest('[data-category]');if(c){category=c.dataset.category;document.querySelectorAll('[data-category]').forEach(b=>b.classList.toggle('selected',b===c));render()}const v=e.target.closest('[data-view]');if(v){view=v.dataset.view;document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b===v));render();document.querySelector('.market').scrollIntoView({behavior:'smooth'})}if(e.target.closest('#reset')){view='explore';category='Everything';query='';document.querySelector('#search').value='';document.querySelectorAll('[data-category]').forEach(b=>b.classList.toggle('selected',b.dataset.category===category));document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===view));render()}});
-document.querySelector('#search').oninput=e=>{query=e.target.value.toLowerCase().trim();render()};document.querySelector('#sort').onchange=e=>{sort=e.target.value;render()};document.querySelector('#sell').onclick=sell;document.querySelector('#bottom-sell').onclick=sell;document.querySelector('#profile').onclick=()=>show('<div class="profile-copy"><span class="eyebrow">WELCOME TO THE CIRCLE</span><h2>Your campus. Your community.</h2><p>Explore items, save your favourites, or pass something on. This prototype stores your listings and saved items on this device.</p><p>Campus verification, private messaging, and shared listings will need a connected backend before launch.</p><button class="primary" id="profile-sell">List your first item ↗</button></div>')|| (document.querySelector('#profile-sell').onclick=sell);modal.addEventListener('click',e=>{if(e.target===modal)modal.close()});document.addEventListener('keydown',e=>{if(e.key==='/'&&!['INPUT','TEXTAREA'].includes(document.activeElement.tagName)&&!modal.open){e.preventDefault();document.querySelector('#search').focus()}});render();
+import "./style.css";
+import { icon } from "./icons.js";
+import { categories, demoListings } from "./data.js";
+import {
+  loadListings,
+  loadSaved,
+  saveListings,
+  saveFavourites,
+  MAX_PHOTO_BYTES,
+} from "./storage.js";
+
+const escape = (value) =>
+  String(value ?? "").replace(
+    /[&<>"']/g,
+    (char) =>
+      ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[
+        char
+      ],
+  );
+const money = (value) =>
+  Number(value) === 0
+    ? "Free"
+    : "₹" + new Intl.NumberFormat("en-IN").format(value);
+const initials = (name) =>
+  name
+    .trim()
+    .split(/\s+/)
+    .map((part) => [...part][0])
+    .filter(Boolean)
+    .filter((_, i, parts) => i === 0 || i === parts.length - 1)
+    .join("")
+    .toUpperCase();
+let localListings = loadListings();
+let saved = loadSaved();
+const state = {
+  view: "explore",
+  category: "Everything",
+  query: "",
+  sort: "recommended",
+  budget: false,
+  condition: "all",
+};
+let previouslyFocused;
+let toastTimer;
+let previewURL;
+let photoFile;
+let submitting = false;
+
+const app = document.querySelector("#app");
+app.innerHTML = `
+<a class="skip-link" href="#market">Skip to listings</a>
+<header class="site-header"><div class="header-inner">
+  <a class="brand" href="#" aria-label="FMS Circle home">${icon("exchange", "brand-mark")}<span>fms<span class="brand-circle">circle</span><span class="brand-period">.</span></span></a>
+  <nav class="desktop-nav" aria-label="Main navigation"><button data-view="explore" class="nav-button active">The marketplace</button><button data-view="saved" class="nav-button">Saved <span class="saved-count">0</span></button><button data-view="mine" class="nav-button">My listings</button></nav>
+  <div class="header-actions"><span class="campus-label">${icon("pin")} FMS, Delhi</span><button class="button button-accent header-sell" data-sell>${icon("plus")} List an item</button></div>
+</div></header>
+<main>
+  <section class="hero shell" aria-labelledby="hero-title">
+    <div class="hero-copy"><h1 id="hero-title">New batch.<br><em>Same good stuff.</em></h1><p>Your senior’s bookshelf. Your next study lamp.<br>A little less new. A lot more campus.</p><a class="hero-link" href="#market">Find your next good thing <span>${icon("down")}</span></a>
+      <div class="hero-footnote"><span class="mini-exchange">${icon("exchange")}</span><span>The campus marketplace for<br><strong>FMS Delhi students.</strong></span></div>
+    </div>
+    <div class="hero-visual"><img class="hero-image" src="./images/campus-still-life.webp" alt="Books, headphones, a green lamp and a coffee mug ready for a new study corner" width="1536" height="1024" fetchpriority="high"/><span class="exchange-stamp" aria-hidden="true"><span>GOOD THINGS</span>${icon("exchange")}<span>GO AROUND</span></span><div class="hero-caption"><span>Pre-loved. Campus-ready.</span><span>Keep the good going. ${icon("diagonal")}</span></div></div>
+  </section>
+  <div class="principles shell"><span>${icon("pin")} Find it on campus.</span><span>${icon("exchange")} Give it a second chapter.</span><span>${icon("heart")} Keep it in the circle.</span></div>
+  <section class="market shell" id="market" tabindex="-1" aria-labelledby="feed-title">
+    <div class="market-heading"><div><h2 id="feed-title">The good stuff<span>.</span></h2><p id="feed-description">From one campus life to the next.</p></div><button class="demo-label" data-about>${icon("info")} Demo marketplace <span>How it works ${icon("diagonal")}</span></button></div>
+    <div class="search-row"><label class="search-box" for="search">${icon("search")}<input id="search" type="search" placeholder="Books, a lamp, your next good find…" autocomplete="off"/><span class="search-shortcut" aria-hidden="true">/</span></label><button class="budget-button" id="budget" aria-pressed="false">Under ₹1,000 ${icon("plus")}</button><label class="condition-select">${icon("filter")}<span class="sr-only">Filter by condition</span><select id="condition"><option value="all">Any condition</option><option>Like new</option><option>Good</option><option>Well loved</option></select></label></div>
+    <div class="filter-row"><div class="categories" aria-label="Listing categories">${categories.map((category) => `<button class="category ${category.name === "Everything" ? "selected" : ""}" data-category="${escape(category.name)}" aria-pressed="${category.name === "Everything"}">${icon(category.icon)}${escape(category.name)}</button>`).join("")}</div></div>
+    <div class="results-row"><p id="result-count" role="status" aria-live="polite"></p><label class="sort-label">Sort by <select id="sort" aria-label="Sort listings"><option value="recommended">Campus picks</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option><option value="new">Newest first</option></select></label></div>
+    <div id="grid" class="product-grid"></div>
+    <div class="inventory-end" id="inventory-end"><span></span><p>Good finds deserve a second look.</p><span></span></div>
+  </section>
+  <section class="handover shell" aria-labelledby="handover-title"><div class="handover-mark" aria-hidden="true">${icon("exchange")}</div><div class="handover-copy"><h2 id="handover-title">Moving on?<br><em>Pass something good on.</em></h2><p>That book you aced. The lamp that saw you through.<br>Someone’s first semester could use it.</p></div><div class="handover-action"><button class="button button-dark" data-sell>Give it a next chapter ${icon("arrow")}</button><span>A photo. A price. A new beginning.</span></div></section>
+</main>
+<footer class="shell site-footer"><a class="brand footer-brand" href="#">${icon("exchange", "brand-mark")}<span>fms<span class="brand-circle">circle</span>.</span></a><p>Less stuff left behind.<br>More good passed around.</p><div class="footer-links"><button data-about>About the circle ${icon("diagonal")}</button><span>Made for FMS, Delhi.</span></div><div class="prototype-note">A campus marketplace prototype. Sample inventory; your listings and saves stay in this browser.</div></footer>
+<nav class="mobile-nav" aria-label="Mobile navigation"><button data-view="explore" class="active">${icon("grid")}<span>Explore</span></button><button data-view="saved">${icon("heart")}<span>Saved <span class="saved-count">0</span></span></button><button class="mobile-sell" data-sell>${icon("plus")}<span>List an item</span></button><button data-view="mine">${icon("bag")}<span>My listings</span></button></nav>
+<dialog id="modal" aria-labelledby="dialog-title"></dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+`;
+
+const grid = document.querySelector("#grid");
+const modal = document.querySelector("#modal");
+const search = document.querySelector("#search");
+function allListings() {
+  return [...localListings, ...demoListings];
+}
+function render() {
+  const query = state.query.trim().toLocaleLowerCase();
+  const items = allListings().filter(
+    (item) =>
+      (state.view !== "saved" || saved.has(item.id)) &&
+      (state.view !== "mine" || item.local) &&
+      (state.category === "Everything" || item.category === state.category) &&
+      (!state.budget || item.price < 1000) &&
+      (state.condition === "all" || item.condition === state.condition) &&
+      `${item.name} ${item.title || ""} ${item.category} ${item.description}`
+        .toLocaleLowerCase()
+        .includes(query),
+  );
+  if (state.sort === "low") items.sort((a, b) => a.price - b.price);
+  if (state.sort === "high") items.sort((a, b) => b.price - a.price);
+  if (state.sort === "new") items.sort((a, b) => b.id - a.id);
+  document
+    .querySelectorAll(".saved-count")
+    .forEach((element) => (element.textContent = saved.size));
+  document.querySelectorAll("[data-view]").forEach((button) => {
+    button.classList.toggle("active", button.dataset.view === state.view);
+    if (button.dataset.view === state.view)
+      button.setAttribute("aria-current", "page");
+    else button.removeAttribute("aria-current");
+  });
+  document.querySelectorAll("[data-category]").forEach((button) => {
+    const selected = button.dataset.category === state.category;
+    button.classList.toggle("selected", selected);
+    button.setAttribute("aria-pressed", selected);
+  });
+  document.querySelector("#budget").setAttribute("aria-pressed", state.budget);
+  document.querySelector("#feed-title").innerHTML = {
+    explore: "The good stuff<span>.</span>",
+    saved: "Worth keeping<span>.</span>",
+    mine: "Your little corner<span>.</span>",
+  }[state.view];
+  document.querySelector("#feed-description").textContent = {
+    explore: "From one campus life to the next.",
+    saved: "The finds you have your eye on.",
+    mine: "Good things you’re ready to pass on.",
+  }[state.view];
+  const activeFilters =
+    state.category !== "Everything" ||
+    query ||
+    state.budget ||
+    state.condition !== "all";
+  document.querySelector("#result-count").innerHTML =
+    `${items.length} ${items.length === 1 ? "find" : "finds"}${state.view === "mine" ? " listed by you" : state.view === "saved" ? " in your collection" : " in the circle"}${activeFilters ? '<button class="clear-filters" data-reset>Clear filters</button>' : ""}`;
+  document.querySelector("#inventory-end").hidden = !items.length;
+  grid.innerHTML = items.length
+    ? items
+        .map(
+          (item) => `
+    <article class="product-card" data-item="${item.id}">
+      <div class="product-photo ${item.image ? "" : "no-photo"}"><button class="photo-open" data-open="${item.id}" aria-label="View ${escape(item.name)}">${item.image ? `<img src="${escape(item.image)}" alt="${escape(item.title || item.name)}" loading="lazy" width="700" height="700"/>` : `<span class="photo-placeholder">${icon(categories.find((category) => category.name === item.category)?.icon || "bag")}<span>A good find,<br>photo coming later.</span></span>`}</button>
+        <span class="condition-badge">${escape(item.condition)}</span><button class="save-button ${saved.has(item.id) ? "is-saved" : ""}" data-save="${item.id}" aria-label="${saved.has(item.id) ? "Unsave" : "Save"} ${escape(item.name)}" aria-pressed="${saved.has(item.id)}">${icon("heart")}</button>
+        ${item.tag ? `<span class="photo-note">${escape(item.tag)}</span>` : ""}
+      </div>
+      <div class="product-meta"><span>${escape(item.category)}</span>${item.local ? '<span class="local-label">Your listing</span>' : ""}</div>
+      <div class="product-title-row"><button class="product-title" data-open="${item.id}" title="${escape(item.title || item.name)}">${escape(item.title || item.name)}</button><strong class="product-price">${money(item.price)}</strong></div>
+      <p class="product-subtitle">${escape(item.title ? item.name : item.description)}</p>
+      <div class="seller-row"><span class="seller-avatar" aria-hidden="true">${escape(initials(item.seller))}</span><span class="seller-name">${escape(item.seller)}<small>${escape(item.batch)}</small></span><span class="pickup">${icon("pin")} ${escape(item.pickup)}</span></div>
+    </article>`,
+        )
+        .join("")
+    : emptyState(activeFilters);
+  grid.querySelectorAll("img").forEach((image) =>
+    image.addEventListener(
+      "error",
+      () => {
+        image.hidden = true;
+        image.parentElement.insertAdjacentHTML(
+          "beforeend",
+          `<span class="photo-placeholder">${icon("bag")}<span>This photo couldn’t load.<br>The good find is still here.</span></span>`,
+        );
+      },
+      { once: true },
+    ),
+  );
+}
+function emptyState(filtered) {
+  const title = filtered
+    ? "No finds this time."
+    : state.view === "saved"
+      ? "Something will catch your eye."
+      : "Your next chapter starts here.";
+  const copy = filtered
+    ? "Try a different search or clear your filters. The right find might be one click away."
+    : state.view === "saved"
+      ? "Tap the heart on any listing. We’ll keep your favourites right here."
+      : "A book, a lamp, a spare bit of room. List something you’re ready to pass on.";
+  return `<div class="empty-state">${icon(filtered ? "search" : state.view === "saved" ? "heart" : "exchange")}<h3>${title}</h3><p>${copy}</p><button class="button button-dark" ${filtered ? "data-reset" : state.view === "saved" ? "data-browse" : "data-sell"}>${filtered ? "Clear filters" : state.view === "saved" ? "Explore the marketplace" : "List your first item"} ${icon("arrow")}</button></div>`;
+}
+function toast(message) {
+  const element = document.querySelector("#toast");
+  clearTimeout(toastTimer);
+  element.innerHTML = `${icon("check")}<span>${escape(message)}</span>`;
+  element.classList.add("show");
+  toastTimer = setTimeout(() => element.classList.remove("show"), 3500);
+}
+function showDialog(content, className = "") {
+  if (!modal.open) previouslyFocused = document.activeElement;
+  modal.className = className;
+  modal.innerHTML = `<button class="dialog-close" aria-label="Close dialog">${icon("close")}</button>${content}`;
+  if (!modal.open) modal.showModal();
+  else modal.querySelector(".dialog-close").focus({ preventScroll: true });
+  document.body.classList.add("modal-open");
+  modal.querySelector(".dialog-close").onclick = () => modal.close();
+}
+modal.addEventListener("close", () => {
+  document.body.classList.remove("modal-open");
+  if (previewURL) URL.revokeObjectURL(previewURL);
+  previewURL = undefined;
+  photoFile = undefined;
+  (previouslyFocused?.isConnected
+    ? previouslyFocused
+    : document.querySelector("#market")
+  ).focus({ preventScroll: true });
+});
+modal.addEventListener("click", (event) => {
+  if (event.target === modal) {
+    const rect = modal.getBoundingClientRect();
+    if (
+      event.clientX < rect.left ||
+      event.clientX > rect.right ||
+      event.clientY < rect.top ||
+      event.clientY > rect.bottom
+    )
+      modal.close();
+  }
+});
+function showDetail(id) {
+  const item = allListings().find((row) => row.id === id);
+  if (!item) return;
+  showDialog(
+    `<div class="detail-layout"><div class="detail-photo">${item.image ? `<img src="${escape(item.image)}" alt="${escape(item.title || item.name)}"/>` : `<span class="photo-placeholder">${icon("bag")}<span>A good find, photo coming later.</span></span>`}</div><div class="detail-copy"><h2 id="dialog-title">${escape(item.name)}</h2><p class="detail-subtitle">${escape(item.title || "")}</p><div class="detail-price-row"><strong>${money(item.price)}</strong><span class="detail-condition">${escape(item.condition)}</span><span class="detail-taxonomy">${escape(item.category)}</span></div><p class="detail-description">${escape(item.description)}</p><div class="detail-seller"><span class="seller-avatar">${escape(initials(item.seller))}</span><div><strong>${escape(item.seller)}</strong><span>${escape(item.batch)}</span></div></div><p class="detail-pickup">${icon("pin")} Pick up: ${escape(item.pickup)}</p><div class="contact-area">${item.local ? `<button class="button button-dark contact-button">View contact details ${icon("arrow")}</button>` : `<div class="sample-notice">${icon("info")}<p>This is a sample listing.<br><span>Seller contact is available on listings you add.</span></p></div>`}</div><button class="detail-save" data-save="${item.id}" aria-pressed="${saved.has(item.id)}">${icon("heart")} ${saved.has(item.id) ? "Saved to your finds" : "Save for later"}</button><p class="meet-note">Meet in a public campus spot. Check the item before paying.</p>${item.local ? `<button class="delete-listing" data-delete="${item.id}">Remove your listing</button>` : ""}</div></div>`,
+    "detail-dialog",
+  );
+  modal.querySelector(".contact-button")?.addEventListener("click", () => {
+    const area = modal.querySelector(".contact-area");
+    area.innerHTML = `<p class="contact-heading">Get in touch with ${escape(item.seller.split(" ")[0])}</p><div class="contact-value">${escape(item.contact || "No contact details provided.")}</div><button class="copy-contact">${icon("copy")} Copy contact</button>`;
+    area.querySelector(".copy-contact").onclick = async () => {
+      try {
+        await navigator.clipboard.writeText(item.contact);
+        toast("Contact copied. Say hello.");
+      } catch {
+        toast("Select the contact details above and copy them.");
+      }
+    };
+  });
+}
+function showAbout() {
+  showDialog(
+    `<div class="about-dialog"><div class="about-symbol">${icon("exchange")}</div><h2 id="dialog-title">A small campus.<br>A little more circle.</h2><p>FMS Circle is a marketplace concept for students at FMS Delhi. Find a book, save a little on room essentials, or give something useful its next chapter.</p><ol class="how-steps"><li><span>Find your good thing</span><p>Search, filter, and save the items you like.</p></li><li><span>Make the handover</span><p>For your own listings, contact details appear on the item page. Agree a public pickup spot and inspect before paying.</p></li><li><span>Keep it in the circle</span><p>A photo and a few details are all you need to list.</p></li></ol><div class="about-prototype"><strong>A note about this prototype</strong><p>Starter listings and sellers are examples, with illustrative AI-generated photos. Your listings and favourites stay in this browser; they are not shared with other students. There are no verified accounts, private messages, or payments yet. Don’t enter sensitive contact details on a shared device.</p></div><button class="button button-dark" data-sell>Pass something on ${icon("arrow")}</button></div>`,
+    "about-modal",
+  );
+}
+function showSell() {
+  photoFile = undefined;
+  showDialog(
+    `<form id="listing-form" novalidate><div class="form-heading"><span class="form-symbol">${icon("exchange")}</span><h2 id="dialog-title">Goodbye, good thing.<br><em>Hello, next chapter.</em></h2><p>Tell the circle what you’re passing on.</p></div><div class="form-layout"><div class="photo-section"><label class="photo-upload" for="photo"><span id="photo-preview">${icon("plus")}<strong>Add a photo</strong><small>JPG, PNG, WebP or GIF · up to 3 MB</small></span><input id="photo" name="photo" type="file" accept="image/jpeg,image/png,image/webp,image/gif"/><span class="upload-note">Good light. Your actual item. No filter needed.</span></label><button type="button" class="remove-photo" hidden>Remove photo</button><p class="field-error" id="photo-error" role="alert"></p></div><div class="form-fields"><label class="field">What are you passing on? <input name="name" required maxlength="80" placeholder="e.g. Marketing Management by Kotler"/></label><div class="form-pair"><label class="field">Asking price (₹)<input name="price" type="number" min="0" max="999999" step="1" required placeholder="650"/><small>Passing it on for free? Enter 0.</small></label><label class="field">Category<select name="category" required><option value="">Choose a category</option>${categories
+      .slice(1)
+      .map((category) => `<option>${escape(category.name)}</option>`)
+      .join(
+        "",
+      )}</select></label></div><div class="form-pair"><label class="field">Condition<select name="condition"><option>Like new</option><option>Good</option><option>Well loved</option></select></label><label class="field">Pickup location<select name="pickup"><option>FMS campus</option><option>North Campus</option><option>Arrange with seller</option></select></label></div><label class="field">A little about it<textarea name="description" required minlength="10" maxlength="800" rows="3" placeholder="Condition, what’s included, and anything the next owner should know…"></textarea></label><div class="form-pair"><label class="field">Your name<input name="seller" required maxlength="60" autocomplete="name" placeholder="Your name"/></label><label class="field">Your batch<input name="batch" required maxlength="60" placeholder="MBA · 2027"/></label></div><label class="field">How can the buyer reach you?<input name="contact" required maxlength="150" placeholder="An email or phone number"/><small>Visible to anyone using this browser. Use a contact you’re happy to share.</small></label><p class="form-error" id="form-error" role="alert" tabindex="-1"></p><button class="button button-accent publish-button" type="submit">Put it in the circle ${icon("arrow")}</button><p class="form-scope">Saved in this browser only. No account needed for this prototype.</p></div></div></form>`,
+    "sell-dialog",
+  );
+  const form = modal.querySelector("form");
+  const input = form.elements.photo;
+  const preview = modal.querySelector("#photo-preview");
+  input.onchange = () => {
+    const file = input.files[0];
+    const error = modal.querySelector("#photo-error");
+    error.textContent = "";
+    if (!file) return;
+    if (
+      !["image/jpeg", "image/png", "image/webp", "image/gif"].includes(
+        file.type,
+      ) ||
+      file.size > MAX_PHOTO_BYTES
+    ) {
+      error.textContent =
+        file.size > MAX_PHOTO_BYTES
+          ? "That photo is over 3 MB. Choose a smaller one."
+          : "Choose a JPG, PNG, WebP, or GIF photo.";
+      input.value = "";
+      return;
+    }
+    photoFile = file;
+    if (previewURL) URL.revokeObjectURL(previewURL);
+    previewURL = URL.createObjectURL(file);
+    preview.innerHTML = `<img src="${previewURL}" alt="Your listing photo preview"/><span class="change-photo">Change photo</span>`;
+    modal.querySelector(".remove-photo").hidden = false;
+  };
+  modal.querySelector(".remove-photo").onclick = () => {
+    if (previewURL) URL.revokeObjectURL(previewURL);
+    previewURL = undefined;
+    photoFile = undefined;
+    input.value = "";
+    preview.innerHTML = `${icon("plus")}<strong>Add a photo</strong><small>JPG, PNG, WebP or GIF · up to 3 MB</small>`;
+    modal.querySelector(".remove-photo").hidden = true;
+    modal.querySelector("#photo-error").textContent = "";
+  };
+  form.onsubmit = async (event) => {
+    event.preventDefault();
+    if (submitting) return;
+    const error = modal.querySelector("#form-error");
+    error.textContent = "";
+    if (!form.reportValidity()) return;
+    const values = Object.fromEntries(new FormData(form));
+    for (const key of ["name", "seller", "batch", "contact", "description"]) {
+      values[key] = String(values[key]).trim();
+      if (!values[key]) {
+        error.textContent = "Please fill in each field with a little detail.";
+        form.elements[key].focus();
+        return;
+      }
+    }
+    if (values.description.length < 10) {
+      error.textContent =
+        "Add at least 10 characters about the item’s condition or what’s included.";
+      form.elements.description.focus();
+      return;
+    }
+    const button = form.querySelector('[type="submit"]');
+    submitting = true;
+    button.disabled = true;
+    button.textContent = "Saving your listing…";
+    try {
+      let image = "";
+      if (photoFile)
+        image = await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = () => reject(new Error("photo"));
+          reader.readAsDataURL(photoFile);
+        });
+      const item = {
+        id: Date.now(),
+        name: values.name,
+        price: Number(values.price),
+        category: values.category,
+        condition: values.condition,
+        pickup: values.pickup,
+        description: values.description,
+        seller: values.seller,
+        batch: values.batch,
+        contact: values.contact,
+        image,
+        local: true,
+      };
+      saveListings([item, ...localListings]);
+      localListings.unshift(item);
+      resetFilters();
+      state.view = "mine";
+      render();
+      modal.close();
+      document.querySelector("#market").scrollIntoView();
+      toast("Listed. Ready for its next chapter.");
+    } catch (issue) {
+      error.textContent =
+        issue.message === "photo"
+          ? "We couldn’t read that photo. Try another image or list without one."
+          : "This browser couldn’t save your listing. Storage may be full or unavailable. Try a smaller photo or remove an older listing.";
+      error.focus();
+    } finally {
+      submitting = false;
+      if (button.isConnected) {
+        button.disabled = false;
+        button.innerHTML = `Put it in the circle ${icon("arrow")}`;
+      }
+    }
+  };
+}
+function resetFilters() {
+  state.category = "Everything";
+  state.query = "";
+  state.budget = false;
+  state.condition = "all";
+  search.value = "";
+  document.querySelector("#condition").value = "all";
+}
+function navigate(view) {
+  state.view = view;
+  resetFilters();
+  render();
+  document.querySelector("#market").scrollIntoView();
+}
+function toggleSaved(id, button) {
+  const next = new Set(saved);
+  next.has(id) ? next.delete(id) : next.add(id);
+  try {
+    saveFavourites(next);
+  } catch {
+    toast("Couldn’t save this find. Browser storage may be unavailable.");
+    return;
+  }
+  saved = next;
+  const wasInDialog = !!button.closest("dialog");
+  const label = button.getAttribute("aria-label");
+  render();
+  if (wasInDialog) {
+    button.setAttribute("aria-pressed", saved.has(id));
+    button.innerHTML = `${icon("heart")} ${saved.has(id) ? "Saved to your finds" : "Save for later"}`;
+  } else {
+    const replacement = grid.querySelector(`[data-save="${id}"]`);
+    replacement?.focus({ preventScroll: true });
+    if (
+      saved.has(id) &&
+      !document.documentElement.classList.contains("keyboard-navigation") &&
+      !matchMedia("(prefers-reduced-motion: reduce)").matches
+    )
+      replacement?.animate(
+        [{ transform: "scale(.85)" }, { transform: "scale(1)" }],
+        { duration: 220, easing: "cubic-bezier(.23,1,.32,1)" },
+      );
+    if (!replacement && label) {
+      const visibleSavedNav = [
+        ...document.querySelectorAll('[data-view="saved"]'),
+      ].find((element) => element.getClientRects().length > 0);
+      (visibleSavedNav || document.querySelector("#market")).focus({
+        preventScroll: true,
+      });
+    }
+  }
+}
+document.addEventListener("click", (event) => {
+  const target = event.target.closest("button, a");
+  if (!target) return;
+  if (target.matches("[data-sell]")) {
+    showSell();
+    return;
+  }
+  if (target.matches("[data-save]")) {
+    toggleSaved(Number(target.dataset.save), target);
+    return;
+  }
+  if (target.matches("[data-open]")) {
+    showDetail(Number(target.dataset.open));
+    return;
+  }
+  if (target.matches("[data-category]")) {
+    state.category = target.dataset.category;
+    render();
+    return;
+  }
+  if (target.matches("[data-view]")) {
+    navigate(target.dataset.view);
+    return;
+  }
+  if (target.matches("[data-reset]")) {
+    resetFilters();
+    render();
+    return;
+  }
+  if (target.matches("[data-browse]")) {
+    navigate("explore");
+    return;
+  }
+  if (target.matches("[data-about]")) {
+    showAbout();
+    return;
+  }
+  if (target.matches(".brand")) {
+    event.preventDefault();
+    navigate("explore");
+    window.scrollTo({ top: 0 });
+    return;
+  }
+  if (target.matches("[data-delete]")) {
+    const id = Number(target.dataset.delete);
+    showDialog(
+      `<div class="confirm-delete"><h2 id="dialog-title">Ready to take it down?</h2><p>This removes your listing from this browser. It can’t be undone.</p><div><button class="button button-light" id="cancel-delete">Keep listing</button><button class="button button-accent" id="confirm-delete">Remove listing</button></div><p id="delete-error" role="alert"></p></div>`,
+    );
+    modal.querySelector("#cancel-delete").onclick = () => showDetail(id);
+    modal.querySelector("#confirm-delete").onclick = () => {
+      try {
+        const next = localListings.filter((item) => item.id !== id);
+        saveListings(next);
+        localListings = next;
+        saved.delete(id);
+        try {
+          saveFavourites(saved);
+        } catch {}
+        modal.close();
+        render();
+        toast("Listing removed. Thanks for keeping things tidy.");
+      } catch {
+        modal.querySelector("#delete-error").textContent =
+          "Couldn’t remove the listing. Browser storage may be unavailable.";
+      }
+    };
+  }
+});
+search.addEventListener("input", (event) => {
+  state.query = event.target.value;
+  render();
+});
+document.querySelector("#sort").onchange = (event) => {
+  state.sort = event.target.value;
+  render();
+};
+document.querySelector("#condition").onchange = (event) => {
+  state.condition = event.target.value;
+  render();
+};
+document.querySelector("#budget").onclick = () => {
+  state.budget = !state.budget;
+  render();
+};
+document.addEventListener("pointerdown", () =>
+  document.documentElement.classList.remove("keyboard-navigation"),
+);
+document.addEventListener("keydown", (event) => {
+  document.documentElement.classList.add("keyboard-navigation");
+  if (
+    event.key === "/" &&
+    !event.ctrlKey &&
+    !event.metaKey &&
+    !modal.open &&
+    !["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement.tagName)
+  ) {
+    event.preventDefault();
+    search.focus();
+    search.scrollIntoView({ block: "center" });
+  }
+});
+window.addEventListener("storage", (event) => {
+  if (
+    event.key === "fms-listings" ||
+    event.key === "fms-saved" ||
+    event.key === null
+  ) {
+    localListings = loadListings();
+    saved = loadSaved();
+    render();
+  }
+});
+render();

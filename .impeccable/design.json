@@ -1,0 +1,407 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-20T15:06:26.150390+00:00",
+  "title": "Design System: FMS Circle",
+  "extensions": {
+    "colorMeta": {
+      "paper": {
+        "role": "neutral",
+        "displayName": "Warm Paper",
+        "canonical": "#f8f7f2",
+        "tonalRamp": [
+          "oklch(15.00% 0.0067 97.35)",
+          "oklch(26.43% 0.0067 97.35)",
+          "oklch(37.86% 0.0067 97.35)",
+          "oklch(49.29% 0.0067 97.35)",
+          "oklch(60.71% 0.0067 97.35)",
+          "oklch(72.14% 0.0067 97.35)",
+          "oklch(83.57% 0.0067 97.35)",
+          "oklch(95.00% 0.0067 97.35)"
+        ]
+      },
+      "ink": {
+        "role": "primary",
+        "displayName": "Forest Ink",
+        "canonical": "#173e35",
+        "tonalRamp": [
+          "oklch(15.00% 0.0472 175.82)",
+          "oklch(26.43% 0.0472 175.82)",
+          "oklch(37.86% 0.0472 175.82)",
+          "oklch(49.29% 0.0472 175.82)",
+          "oklch(60.71% 0.0472 175.82)",
+          "oklch(72.14% 0.0472 175.82)",
+          "oklch(83.57% 0.0472 175.82)",
+          "oklch(95.00% 0.0472 175.82)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Quiet Green",
+        "canonical": "#5a6a61",
+        "tonalRamp": [
+          "oklch(15.00% 0.0240 160.81)",
+          "oklch(26.43% 0.0240 160.81)",
+          "oklch(37.86% 0.0240 160.81)",
+          "oklch(49.29% 0.0240 160.81)",
+          "oklch(60.71% 0.0240 160.81)",
+          "oklch(72.14% 0.0240 160.81)",
+          "oklch(83.57% 0.0240 160.81)",
+          "oklch(95.00% 0.0240 160.81)"
+        ]
+      },
+      "accent": {
+        "role": "primary",
+        "displayName": "Vermilion",
+        "canonical": "#c7442d",
+        "tonalRamp": [
+          "oklch(15.00% 0.1710 32.30)",
+          "oklch(26.43% 0.1710 32.30)",
+          "oklch(37.86% 0.1710 32.30)",
+          "oklch(49.29% 0.1710 32.30)",
+          "oklch(60.71% 0.1710 32.30)",
+          "oklch(72.14% 0.1710 32.30)",
+          "oklch(83.57% 0.1710 32.30)",
+          "oklch(95.00% 0.1710 32.30)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Soft Rule",
+        "canonical": "#dce1d8",
+        "tonalRamp": [
+          "oklch(15.00% 0.0132 130.79)",
+          "oklch(26.43% 0.0132 130.79)",
+          "oklch(37.86% 0.0132 130.79)",
+          "oklch(49.29% 0.0132 130.79)",
+          "oklch(60.71% 0.0132 130.79)",
+          "oklch(72.14% 0.0132 130.79)",
+          "oklch(83.57% 0.0132 130.79)",
+          "oklch(95.00% 0.0132 130.79)"
+        ]
+      },
+      "mint": {
+        "role": "neutral",
+        "displayName": "Mint Ground",
+        "canonical": "#e7eee3",
+        "tonalRamp": [
+          "oklch(15.00% 0.0164 133.83)",
+          "oklch(26.43% 0.0164 133.83)",
+          "oklch(37.86% 0.0164 133.83)",
+          "oklch(49.29% 0.0164 133.83)",
+          "oklch(60.71% 0.0164 133.83)",
+          "oklch(72.14% 0.0164 133.83)",
+          "oklch(83.57% 0.0164 133.83)",
+          "oklch(95.00% 0.0164 133.83)"
+        ]
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "White",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "oklch(15.00% 0.0000 0.00)",
+          "oklch(26.43% 0.0000 0.00)",
+          "oklch(37.86% 0.0000 0.00)",
+          "oklch(49.29% 0.0000 0.00)",
+          "oklch(60.71% 0.0000 0.00)",
+          "oklch(72.14% 0.0000 0.00)",
+          "oklch(83.57% 0.0000 0.00)",
+          "oklch(95.00% 0.0000 0.00)"
+        ]
+      },
+      "field": {
+        "role": "neutral",
+        "displayName": "Field Paper",
+        "canonical": "#fffefa",
+        "tonalRamp": [
+          "oklch(15.00% 0.0054 95.10)",
+          "oklch(26.43% 0.0054 95.10)",
+          "oklch(37.86% 0.0054 95.10)",
+          "oklch(49.29% 0.0054 95.10)",
+          "oklch(60.71% 0.0054 95.10)",
+          "oklch(72.14% 0.0054 95.10)",
+          "oklch(83.57% 0.0054 95.10)",
+          "oklch(95.00% 0.0054 95.10)"
+        ]
+      },
+      "field-line": {
+        "role": "neutral",
+        "displayName": "Field Rule",
+        "canonical": "#c8d1c6",
+        "tonalRamp": [
+          "oklch(15.00% 0.0179 140.02)",
+          "oklch(26.43% 0.0179 140.02)",
+          "oklch(37.86% 0.0179 140.02)",
+          "oklch(49.29% 0.0179 140.02)",
+          "oklch(60.71% 0.0179 140.02)",
+          "oklch(72.14% 0.0179 140.02)",
+          "oklch(83.57% 0.0179 140.02)",
+          "oklch(95.00% 0.0179 140.02)"
+        ]
+      },
+      "chip": {
+        "role": "neutral",
+        "displayName": "Quiet Chip",
+        "canonical": "#eeefe8",
+        "tonalRamp": [
+          "oklch(15.00% 0.0093 113.16)",
+          "oklch(26.43% 0.0093 113.16)",
+          "oklch(37.86% 0.0093 113.16)",
+          "oklch(49.29% 0.0093 113.16)",
+          "oklch(60.71% 0.0093 113.16)",
+          "oklch(72.14% 0.0093 113.16)",
+          "oklch(83.57% 0.0093 113.16)",
+          "oklch(95.00% 0.0093 113.16)"
+        ]
+      },
+      "accent-hover": {
+        "role": "primary",
+        "displayName": "Vermilion Hover",
+        "canonical": "#ad3422",
+        "tonalRamp": [
+          "oklch(15.00% 0.1603 31.40)",
+          "oklch(26.43% 0.1603 31.40)",
+          "oklch(37.86% 0.1603 31.40)",
+          "oklch(49.29% 0.1603 31.40)",
+          "oklch(60.71% 0.1603 31.40)",
+          "oklch(72.14% 0.1603 31.40)",
+          "oklch(83.57% 0.1603 31.40)",
+          "oklch(95.00% 0.1603 31.40)"
+        ]
+      },
+      "ink-hover": {
+        "role": "primary",
+        "displayName": "Forest Hover",
+        "canonical": "#285648",
+        "tonalRamp": [
+          "oklch(15.00% 0.0563 171.30)",
+          "oklch(26.43% 0.0563 171.30)",
+          "oklch(37.86% 0.0563 171.30)",
+          "oklch(49.29% 0.0563 171.30)",
+          "oklch(60.71% 0.0563 171.30)",
+          "oklch(72.14% 0.0563 171.30)",
+          "oklch(83.57% 0.0563 171.30)",
+          "oklch(95.00% 0.0563 171.30)"
+        ]
+      },
+      "mint-hover": {
+        "role": "neutral",
+        "displayName": "Mint Hover",
+        "canonical": "#dce5d6",
+        "tonalRamp": [
+          "oklch(15.00% 0.0223 132.54)",
+          "oklch(26.43% 0.0223 132.54)",
+          "oklch(37.86% 0.0223 132.54)",
+          "oklch(49.29% 0.0223 132.54)",
+          "oklch(60.71% 0.0223 132.54)",
+          "oklch(72.14% 0.0223 132.54)",
+          "oklch(83.57% 0.0223 132.54)",
+          "oklch(95.00% 0.0223 132.54)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Editorial introduction."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Inventory section heading."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Factual item identification."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Introductory supporting copy."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Pill action labels."
+      },
+      "price": {
+        "displayName": "Price",
+        "purpose": "Card prices with tabular numerals."
+      }
+    },
+    "shadows": [
+      {
+        "name": "exchange-stamp",
+        "value": "0 5px 14px #5223120a",
+        "purpose": "Faint lift under the circular mark."
+      },
+      {
+        "name": "dialog",
+        "value": "0 22px 90px #122f3540",
+        "purpose": "Native task dialog; backdrop #102d2b80."
+      },
+      {
+        "name": "toast",
+        "value": "0 8px 26px #173e3524",
+        "purpose": "Transient confirmation."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "purpose": "Press, overlay, toast, and image movement."
+      },
+      {
+        "name": "press",
+        "value": "120ms",
+        "purpose": "Button press response."
+      },
+      {
+        "name": "control-color",
+        "value": "150ms ease",
+        "purpose": "Button background and text changes."
+      },
+      {
+        "name": "dialog-entry",
+        "value": "220ms",
+        "purpose": "Overlay entry; suppressed for keyboard navigation."
+      },
+      {
+        "name": "toast-entry",
+        "value": "180ms",
+        "purpose": "Confirmation reveal."
+      },
+      {
+        "name": "photo-hover",
+        "value": "350ms",
+        "purpose": "Fine-pointer image enlargement; reduced motion suppresses movement."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "wide",
+        "value": "1600px"
+      },
+      {
+        "name": "compact-desktop",
+        "value": "1150px"
+      },
+      {
+        "name": "tablet",
+        "value": "900px"
+      },
+      {
+        "name": "mobile",
+        "value": "640px"
+      },
+      {
+        "name": "narrow",
+        "value": "359px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Pill action with a quiet hover shift and visible keyboard focus.",
+      "html": "<button class=\"ds-button-primary\">Put it in the circle</button>",
+      "css": ".ds-button-primary{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:48px;padding:13px 23px;border:0;border-radius:100px;background:var(--accent);color:#fff;font:600 13px \"DM Sans\",sans-serif;letter-spacing:.01em;cursor:pointer;transition:transform 120ms var(--ease-out),background-color 150ms ease;}.ds-button-primary:focus-visible{outline:2px solid var(--accent);outline-offset:5px;}.ds-button-primary:active:not(:disabled){transform:scale(.975);}.ds-button-primary:disabled{opacity:.65;cursor:wait;}@media(hover:hover) and (pointer:fine){.ds-button-primary:hover{background:#ad3422;}}@media(prefers-reduced-motion:reduce){.ds-button-primary{transition:none;}}"
+    },
+    {
+      "name": "Dark Button",
+      "kind": "button",
+      "refersTo": "button-dark",
+      "description": "Pill action with a quiet hover shift and visible keyboard focus.",
+      "html": "<button class=\"ds-button-dark\">View contact details</button>",
+      "css": ".ds-button-dark{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:48px;padding:13px 23px;border:0;border-radius:100px;background:var(--ink);color:var(--paper);font:600 13px \"DM Sans\",sans-serif;letter-spacing:.01em;cursor:pointer;transition:transform 120ms var(--ease-out),background-color 150ms ease;}.ds-button-dark:focus-visible{outline:2px solid var(--accent);outline-offset:5px;}.ds-button-dark:active:not(:disabled){transform:scale(.975);}.ds-button-dark:disabled{opacity:.65;cursor:wait;}@media(hover:hover) and (pointer:fine){.ds-button-dark:hover{background:#285648;}}@media(prefers-reduced-motion:reduce){.ds-button-dark{transition:none;}}"
+    },
+    {
+      "name": "Light Button",
+      "kind": "button",
+      "refersTo": "button-light",
+      "description": "Pill action with a quiet hover shift and visible keyboard focus.",
+      "html": "<button class=\"ds-button-light\">Pass something on</button>",
+      "css": ".ds-button-light{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:48px;padding:13px 23px;border:0;border-radius:100px;background:var(--mint);color:var(--ink);font:600 13px \"DM Sans\",sans-serif;letter-spacing:.01em;cursor:pointer;transition:transform 120ms var(--ease-out),background-color 150ms ease;}.ds-button-light:focus-visible{outline:2px solid var(--accent);outline-offset:5px;}.ds-button-light:active:not(:disabled){transform:scale(.975);}.ds-button-light:disabled{opacity:.65;cursor:wait;}@media(hover:hover) and (pointer:fine){.ds-button-light:hover{background:#dce5d6;}}@media(prefers-reduced-motion:reduce){.ds-button-light{transition:none;}}"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "A labeled local-listing field.",
+      "html": "<label class=\"ds-field\">Your name<input autocomplete=\"name\" placeholder=\"Your name\"/></label>",
+      "css": ".ds-field{display:flex;flex-direction:column;gap:7px;color:var(--ink);font:600 11px \"DM Sans\",sans-serif;}.ds-field input{border:1px solid #c8d1c6;border-radius:7px;background:#fffefa;padding:11px 12px;min-height:44px;color:var(--ink);font:400 14px/1.5 \"DM Sans\",sans-serif;caret-color:var(--accent);}.ds-field input::placeholder{color:#6b756c;opacity:1;}.ds-field input:focus-visible{outline:2px solid var(--accent);outline-offset:5px;}@media(max-width:640px){.ds-field input{font-size:16px;padding:10px;min-height:46px;}}"
+    },
+    {
+      "name": "Category Filters",
+      "kind": "chip",
+      "refersTo": "category",
+      "description": "Category pills reverse to forest when selected.",
+      "html": "<div class=\"ds-categories\" role=\"group\" aria-label=\"Category\"><button class=\"ds-category ds-selected\" aria-pressed=\"true\">Everything</button><button class=\"ds-category\" aria-pressed=\"false\">Books &amp; notes</button></div>",
+      "css": ".ds-categories{display:flex;gap:8px;overflow-x:auto;padding:7px;}.ds-category{white-space:nowrap;border:1px solid transparent;background:#eeefe8;color:var(--ink);padding:10px 15px;border-radius:100px;font:400 12px \"DM Sans\",sans-serif;min-height:40px;cursor:pointer;transition:transform 120ms var(--ease-out),background-color 150ms ease;}.ds-category.ds-selected{background:var(--ink);color:var(--paper);}.ds-category:focus-visible{outline:2px solid var(--accent);outline-offset:5px;}.ds-category:active{transform:scale(.975);}@media(hover:hover) and (pointer:fine){.ds-category:not(.ds-selected):hover{background:#e2e6db;}}@media(max-width:640px){.ds-category{min-height:44px;font-size:11px;padding:10px 13px;}}@media(prefers-reduced-motion:reduce){.ds-category{transition:none;}}"
+    },
+    {
+      "name": "Desktop Navigation",
+      "kind": "nav",
+      "description": "Muted labels with a forest active rule; mobile uses fixed bottom actions.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Marketplace\"><button class=\"ds-nav-button ds-active\" aria-current=\"page\">Browse</button><button class=\"ds-nav-button\">Saved finds <span class=\"ds-count\">2</span></button></nav>",
+      "css": ".ds-nav{display:flex;align-items:stretch;gap:32px;min-height:68px;border-bottom:1px solid var(--line);}.ds-nav-button{position:relative;border:0;background:none;color:var(--muted);font:500 13px \"DM Sans\",sans-serif;padding:0;cursor:pointer;}.ds-nav-button.ds-active{color:var(--ink);font-weight:650;}.ds-nav-button.ds-active::after{content:\"\";position:absolute;bottom:-1px;left:0;right:0;height:2px;background:var(--ink);}.ds-count{display:inline-grid;place-items:center;background:#e8ebe3;border-radius:50%;min-width:19px;height:19px;margin-left:3px;font-size:11px;font-weight:600;}.ds-nav-button:focus-visible{outline:2px solid var(--accent);outline-offset:5px;}.ds-nav-button:active{transform:scale(.975);}@media(hover:hover) and (pointer:fine){.ds-nav-button:hover{color:var(--ink);}}"
+    },
+    {
+      "name": "Photo Placeholder Listing Card",
+      "kind": "card",
+      "refersTo": "photo-well",
+      "description": "The no-photo local-listing state; photography replaces this well when supplied.",
+      "html": "<article class=\"ds-card\"><button class=\"ds-photo\" aria-label=\"Open Adjustable metal desk lamp\"><svg viewBox=\"0 0 24 24\" width=\"45\" height=\"45\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" aria-hidden=\"true\"><path d=\"M5 7h14l2 14H3L5 7Zm3 0V5a4 4 0 0 1 8 0v2\"/></svg><span>A good find, photo coming later.</span></button><p class=\"ds-meta\">Room essentials · Local listing</p><div class=\"ds-title-row\"><button class=\"ds-title\">Adjustable metal desk lamp</button><strong class=\"ds-price\">₹550</strong></div><div class=\"ds-seller\"><span class=\"ds-avatar\">DA</span><span>Dev Arora<small>MBA · 2027</small></span><span class=\"ds-pickup\">Pick up: North Campus</span></div></article>",
+      "css": ".ds-card{max-width:290px;color:var(--ink);font-family:\"DM Sans\",sans-serif;}.ds-photo{display:flex;flex-direction:column;gap:20px;align-items:center;justify-content:center;aspect-ratio:1.04;width:100%;padding:18px;border:0;border-radius:12px;background:var(--mint);color:var(--muted);font:400 13px/1.6 \"DM Sans\",sans-serif;cursor:pointer;}.ds-photo:focus-visible{outline:3px solid var(--accent);outline-offset:-5px;}.ds-meta{font-size:11px;line-height:1.5;color:var(--muted);margin:14px 0 7px;}.ds-title-row{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;}.ds-title{border:0;background:none;color:inherit;padding:0;text-align:left;font:600 15px/1.5 \"DM Sans\",sans-serif;letter-spacing:-.015em;cursor:pointer;}.ds-title:focus-visible{outline:2px solid var(--accent);outline-offset:5px;}.ds-title:active,.ds-photo:active{transform:scale(.975);}.ds-price{font:400 24px/1.1 var(--serif);white-space:nowrap;font-variant-numeric:tabular-nums;}.ds-seller{display:flex;align-items:center;gap:7px;margin-top:13px;padding-top:12px;border-top:1px solid var(--line);font-size:10px;}.ds-avatar{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#e7eadd;font-size:9px;}.ds-seller small{display:block;font-size:9px;color:var(--muted);}.ds-pickup{margin-left:auto;font-size:9px;color:var(--muted);}@media(hover:hover) and (pointer:fine){.ds-title:hover{color:var(--accent);}}@media(max-width:1150px){.ds-seller{display:grid;grid-template-columns:28px minmax(0,1fr);gap:6px 8px;}.ds-pickup{grid-column:1/-1;margin-left:0;font-size:10px;line-height:1.6;white-space:normal;}.ds-title-row{flex-direction:column;gap:5px;}}@media(max-width:640px){.ds-photo{aspect-ratio:1/1.1;border-radius:8px;}.ds-title{font-size:13px;min-height:39px;letter-spacing:0;}.ds-price{font-size:23px;}}"
+    },
+    {
+      "name": "Saved Control",
+      "kind": "button",
+      "description": "Inline SVG heart with a 44px mobile target and vermilion selected state.",
+      "html": "<button class=\"ds-save ds-saved\" aria-label=\"Remove from saved finds\" aria-pressed=\"true\"><svg viewBox=\"0 0 24 24\" width=\"17\" height=\"17\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" aria-hidden=\"true\"><path d=\"M20.8 4.7a5.5 5.5 0 0 0-7.8 0L12 5.8l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.9-8.5a5.5 5.5 0 0 0-.1-7.8Z\"/></svg></button>",
+      "css": ".ds-save{display:grid;place-items:center;width:35px;height:35px;border:0;border-radius:50%;background:#fdfcf5ed;color:var(--ink);cursor:pointer;transition:transform 120ms var(--ease-out),background-color 150ms ease;}.ds-save.ds-saved{color:var(--accent);background:var(--paper);}.ds-save.ds-saved svg{fill:var(--accent);stroke:var(--accent);}.ds-save:focus-visible{outline:2px solid var(--accent);outline-offset:5px;}.ds-save:active{transform:scale(.975);}@media(hover:hover) and (pointer:fine){.ds-save:hover{background:white;}}@media(max-width:640px){.ds-save,.ds-save.ds-saved{position:relative;isolation:isolate;width:44px;height:44px;background:transparent;}.ds-save::before{content:\"\";position:absolute;inset:5px;border-radius:50%;background:#fdfcf5ed;z-index:-1;}.ds-save svg{width:15px;height:15px;}}@media(prefers-reduced-motion:reduce){.ds-save{transition:none;}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Campus publication, everyday exchange",
+    "overview": "An everyday campus exchange with the character of an independent university publication. Forest ink, warm paper, vermilion accents, and a serif/sans pairing give useful secondhand belongings an editorial frame. The university cultural-festival direction lands through its confident print palette and circular exchange mark; the marketplace keeps familiar search, filters, cards, and forms.\n\nThe system is photographic and restrained: still-life imagery leads, product facts remain easy to compare, and thin rules separate information without enclosing every item. Keep the FMS Circle identity and a clear FMS Delhi context. The browser-local prototype labels demonstration inventory and illustrative generated photography; it does not imply verified students or shared activity. Avoid the previous Pinterest/polaroid treatment and generic ecommerce dashboard language.",
+    "keyCharacteristics": [
+      "Editorial serif headlines beside practical sans-serif controls.",
+      "Warm paper, forest ink, and selective vermilion action.",
+      "Photographic wells, flat cards, and thin separating rules.",
+      "A circular exchange mark and compact, responsive inventory.",
+      "Visible pickup facts and immediate keyboard feedback."
+    ],
+    "rules": [
+      {
+        "name": "The Selective Vermilion Rule",
+        "body": "Reserve the accent for actions, emphasis, saved state, and focus; do not turn every inventory fact into an accent.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Voices Rule",
+        "body": "Keep editorial headings and prices in the serif; keep item identification, controls, and factual metadata in the sans.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat Inventory Rule",
+        "body": "Keep the card body unboxed and shadowless; reserve elevation for overlays and the small exchange stamp.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** use warm paper, forest ink, and selective vermilion with the self-hosted serif/sans pairing.",
+      "**Do** preserve photographic wells and flat card bodies with quiet rules.",
+      "**Do** keep condition, price, seller, and wrapping pickup visible when comparing items on mobile.",
+      "**Do** maintain visible keyboard focus through saves, removals, and dialog transitions.",
+      "**Do** label sample listings and explain browser-only persistence and illustrative photography."
+    ],
+    "donts": [
+      "**Don't** reintroduce the Pinterest/polaroid layout or a generic ecommerce dashboard.",
+      "**Don't** add card shadows or use mint as a fabricated success/verification signal.",
+      "**Don't** move detail taxonomy above the heading as a decorative eyebrow.",
+      "**Don't** imply verified accounts, shared marketplace activity, payments, or private messages in this local prototype.",
+      "**Don't** make a hover effect or animation necessary to use an action."
+    ]
+  }
+}
