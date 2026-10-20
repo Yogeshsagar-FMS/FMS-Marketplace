@@ -1,33 +1,33 @@
 ---
 name: FMS Circle
-description: An editorial campus exchange for FMS Delhi.
+description: "A bold campus exchange: FMS. Full circle."
 colors:
-  paper: "#f8f7f2"
-  ink: "#173e35"
-  muted: "#5a6a61"
-  accent: "#c7442d"
-  line: "#dce1d8"
-  mint: "#e7eee3"
+  wine: "#6b142e"
+  wine-deep: "#4b1024"
+  butter: "#f1df93"
+  paper: "#fcf6ed"
+  ink: "#3e1828"
+  muted: "#765961"
+  accent: "#97203f"
+  line: "#ddcdd0"
+  mint: "#f0e2df"
   white: "#ffffff"
-  field: "#fffefa"
-  field-line: "#c8d1c6"
-  chip: "#eeefe8"
-  accent-hover: "#ad3422"
-  ink-hover: "#285648"
-  mint-hover: "#dce5d6"
+  field: "#fffbf6"
+  field-line: "#ceb4bd"
+  chip: "#efe5e1"
 typography:
   display:
-    fontFamily: "DM Serif Display, Georgia, serif"
-    fontSize: "clamp(56px, 5.8vw, 84px)"
-    fontWeight: 400
-    lineHeight: 1.02
-    letterSpacing: "-0.035em"
+    fontFamily: "Bricolage Grotesque, sans-serif"
+    fontSize: "clamp(110px, 13.8vw, 200px)"
+    fontWeight: 800
+    lineHeight: 0.86
+    letterSpacing: "-0.04em"
   headline:
-    fontFamily: "DM Serif Display, Georgia, serif"
-    fontSize: "46px"
-    fontWeight: 400
-    lineHeight: 1.12
-    letterSpacing: "-0.025em"
+    fontFamily: "Bricolage Grotesque, sans-serif"
+    fontSize: "44px"
+    fontWeight: 800
+    lineHeight: 1.03
+    letterSpacing: "-0.035em"
   title:
     fontFamily: "DM Sans, sans-serif"
     fontSize: "15px"
@@ -38,22 +38,25 @@ typography:
     fontFamily: "DM Sans, sans-serif"
     fontSize: "15px"
     fontWeight: 400
-    lineHeight: 1.85
+    lineHeight: 1.8
   label:
     fontFamily: "DM Sans, sans-serif"
     fontSize: "13px"
     fontWeight: 600
     letterSpacing: "0.01em"
   price:
-    fontFamily: "DM Serif Display, Georgia, serif"
+    fontFamily: "Bricolage Grotesque, sans-serif"
     fontSize: "24px"
-    fontWeight: 400
+    fontWeight: 750
     lineHeight: 1.1
 rounded:
+  poster: "2px"
+  button: "6px"
+  filter: "5px"
   badge: "4px"
   field: "7px"
   input: "8px"
-  photo: "12px"
+  photo: "4px"
   dialog: "16px"
   pill: "100px"
   circle: "50%"
@@ -70,26 +73,20 @@ components:
     backgroundColor: "{colors.accent}"
     textColor: "{colors.white}"
     typography: "{typography.label}"
-    rounded: "{rounded.pill}"
+    rounded: "{rounded.button}"
     padding: "13px 23px"
-  button-primary-hover:
-    backgroundColor: "{colors.accent-hover}"
   button-dark:
     backgroundColor: "{colors.ink}"
     textColor: "{colors.paper}"
     typography: "{typography.label}"
-    rounded: "{rounded.pill}"
+    rounded: "{rounded.button}"
     padding: "13px 23px"
-  button-dark-hover:
-    backgroundColor: "{colors.ink-hover}"
   button-light:
     backgroundColor: "{colors.mint}"
     textColor: "{colors.ink}"
     typography: "{typography.label}"
-    rounded: "{rounded.pill}"
+    rounded: "{rounded.button}"
     padding: "13px 23px"
-  button-light-hover:
-    backgroundColor: "{colors.mint-hover}"
   field:
     backgroundColor: "{colors.field}"
     textColor: "{colors.ink}"
@@ -98,140 +95,141 @@ components:
   category:
     backgroundColor: "{colors.chip}"
     textColor: "{colors.ink}"
-    rounded: "{rounded.pill}"
+    rounded: "{rounded.filter}"
     padding: "10px 15px"
   category-selected:
-    backgroundColor: "{colors.ink}"
+    backgroundColor: "{colors.wine}"
     textColor: "{colors.paper}"
   photo-well:
     rounded: "{rounded.photo}"
+  button-header:
+    backgroundColor: "{colors.butter}"
+    textColor: "{colors.wine}"
+    rounded: "{rounded.button}"
+    height: "44px"
 ---
 
 # Design System: FMS Circle
 
 ## Overview
 
-**Creative North Star: "Campus publication, everyday exchange"**
+**Creative North Star: "FMS. Full circle."**
 
-An everyday campus exchange with the character of an independent university publication. Forest ink, warm paper, vermilion accents, and a serif/sans pairing give useful secondhand belongings an editorial frame. The university cultural-festival direction lands through its confident print palette and circular exchange mark; the marketplace keeps familiar search, filters, cards, and forms.
+An expressive student exchange grounded in FMS Delhi: deep maroon, butter yellow, ivory paper and oversized Bricolage Grotesque lettering. The sourced eagle identity and familiar campus belongings establish place; rotated poster compositions and moving photographic cutouts bring the energy of a student festival programme to an everyday handover.
 
-The system is photographic and restrained: still-life imagery leads, product facts remain easy to compare, and thin rules separate information without enclosing every item. Keep the FMS Circle identity and a clear FMS Delhi context. The browser-local prototype labels demonstration inventory and illustrative generated photography; it does not imply verified students or shared activity. Avoid the previous Pinterest/polaroid treatment and generic ecommerce dashboard language.
+The user explicitly rejected the restrained forest/serif catalogue. This replacement identity is bold, playful and animated while keeping item comparison and listing practical. The FMS Circle name remains; institutional imagery identifies the campus without claiming an official service. Sample listings and generated photography remain clearly disclosed.
 
 **Key Characteristics:**
-- Editorial serif headlines beside practical sans-serif controls.
-- Warm paper, forest ink, and selective vermilion action.
-- Photographic wells, flat cards, and thin separating rules.
-- A circular exchange mark and compact, responsive inventory.
-- Visible pickup facts and immediate keyboard feedback.
+- Oversized grotesque lettering with practical DM Sans controls.
+- Maroon fields, butter highlights and warm paper inventory.
+- Rotated posters and photographic cutouts with soft object depth.
+- Flat listing bodies with visible price, condition and pickup.
+- Pausable decorative motion and complete reduced-motion states.
 
 ## Colors
 
-The palette feels like forest and vermilion ink printed on warm paper; the frontmatter holds normative values.
+The palette combines deep maroon identity fields with butter-yellow energy and warm paper utility surfaces. Frontmatter values are normative; the legacy `mint` token now names a warm blush ground.
 
 ### Primary
-- **Vermilion:** Primary publish/list actions, headline emphasis, saved hearts, and keyboard focus.
-- **Forest Ink:** Main text, selected categories, dark actions, and active navigation.
+- **Campus Maroon / Deep Maroon:** Hero, finale, selected categories and handover emphasis.
+- **Raspberry Accent:** Primary listing actions, saved hearts, emphasis and keyboard focus.
+
+### Secondary
+- **Butter Yellow:** Hero emphasis, header listing action, ticker and handover story ground.
 
 ### Neutral
-- **Warm Paper:** Page and dialog canvas; reversed text on dark controls.
-- **Quiet Green:** Supporting copy, metadata, and inactive navigation.
-- **Soft Rule:** Dividers between information groups.
-- **Mint Ground:** Handover panels, information notices, and photo placeholders. It is a material ground, not a success status.
-- **White / Field Paper / Field Rule:** Reversed primary-action text and clear, lightly bordered form controls.
-- **Quiet Chip:** Unselected category backgrounds. Hover colors deepen or shift the existing button grounds.
+- **Warm Paper / Plum Ink:** Main canvas and readable text; paper reverses onto maroon.
+- **Muted Plum / Blush Rule:** Supporting information and thin dividers.
+- **Blush Ground:** Photo placeholders, notices and utility panels; it does not imply verification.
+- **White / Field Paper / Field Rule / Quiet Chip:** Action contrast, clear form controls and unselected filters.
 
-### Named Rules
-
-**The Selective Vermilion Rule.** Reserve the accent for actions, emphasis, saved state, and focus; do not turn every inventory fact into an accent.
+**The Campus Color Rule.** Use maroon and butter as substantial identity fields as well as action colors; keep inventory facts readable on warm paper.
 
 ## Typography
 
-**Display Font:** Self-hosted DM Serif Display, with Georgia and serif fallbacks.
-**Body Font:** Self-hosted DM Sans, with a sans-serif fallback. The file is variable; interface text uses regular through bold weights.
+**Display Font:** Self-hosted Bricolage Grotesque (`/fonts/bricolage.ttf`), variable weights 200–800, with sans-serif fallback.
+**Body Font:** Self-hosted DM Sans, with sans-serif fallback.
 
-The serif is the editorial voice for large headings and prices. DM Sans carries item names, controls, and explanatory copy. Headings balance their lines; numerals in prices align tabularly.
+The expressive grotesque carries headings, poster lettering and prices; DM Sans keeps item names, labels and explanations practical. The inherited CSS variable named `--serif` now resolves to Bricolage Grotesque and does not indicate a serif role.
 
 ### Hierarchy
-- **Display:** The frontmatter scale describes the large-screen hero. It resolves to 67px at widths up to 1150px and 57px up to 900px; mobile uses `clamp(52px, 11vw, 69px)` and 47px below 360px. At 1600px and above it is 86px.
-- **Headline:** Inventory headings use the frontmatter scale, dropping to 35px on mobile and 31px below 360px. Detail headings are 38px/1.1, 33px on tablet, and 35px on mobile; form headings are 39px, 34px, and 31px.
-- **Title:** Item titles use the frontmatter scale on desktop, 13px on mobile, and 15px in the single-column narrow layout. Two-line mobile titles preserve aligned price positions.
-- **Body:** Introductory copy uses the frontmatter role; detail descriptions use 13px/1.9 and 12px on mobile. Supporting paragraphs adapt to their surface rather than forcing one global text size.
-- **Label:** Button text uses the frontmatter role. Category labels are 12px on desktop and 11px on smaller screens; supporting inventory metadata is generally 10–12px.
-- **Price:** Card prices use the frontmatter role, 23px on mobile; detail prices are 34px and 32px on mobile.
+- **Display:** Frontmatter describes the desktop hero at weight 800. It uses 14.3vw up to 1150px, 14.7vw up to 900px and 15.2vw on phones. The finale uses `clamp(70px, 11vw, 160px)` and 14.9vw on phones.
+- **Headline:** Inventory uses the frontmatter role, becoming 31px on phones and 28px below 360px. Collection headings use `clamp(38px, 4.5vw, 62px)`; story headings use `clamp(44px, 5.1vw, 72px)` at weight 800 and line-height 0.98.
+- **Title:** Sans item identification remains 15px desktop, 13px mobile and 15px in the narrow single-column grid.
+- **Body:** Hero support uses 15px/1.8 desktop and 12px mobile; story and utility copy adapt to their surfaces.
+- **Label:** Standard actions use 13px/600. Phone institution text is 11px with 10px secondary text; motion and demo-status controls are 11px. Preserve these final legibility corrections.
+- **Price:** Card prices use the frontmatter role with tight tracking and tabular numerals; phones retain 24px prices.
 
-### Named Rules
-
-**The Two Voices Rule.** Keep editorial headings and prices in the serif; keep item identification, controls, and factual metadata in the sans.
+**The Oversized Voice Rule.** Let expressive headings occupy the available width; preserve the shipped oversized display scale rather than imposing the former catalogue cap.
 
 ## Layout
 
-The content shell caps at 1280px, with 48px side gutters on desktop, 28px up to 900px, 18px up to 640px, and 14px below 360px. The header has its own 1400px cap. The desktop introduction is a compact two-column text/photo layout; mobile stacks it and crops the still life to 248px high. The introductory image has one strongly rounded upper-left corner.
+The reusable content shell caps at 1280px, with 48px side gutters on desktop, 28px up to 900px, 18px up to 640px and 14px below 360px. The hero has its own 1500px canvas. Its centered type and search sit among perimeter cutouts; this landing composition is documented in the surface brief rather than required of every screen.
 
-Inventory uses four columns on desktop, three up to 900px, two up to 640px, and one below 360px. Gaps move from 38px by 25px to 28px by 13px on mobile. Photo wells are near-square on desktop and slightly taller on mobile. Search becomes a full-width row above two smaller controls; category pills scroll horizontally. Item titles and prices stack on medium and mobile cards.
+Collection posters form three columns on desktop and a horizontal phone strip. Inventory uses four columns, three up to 900px, two up to 640px and one below 360px. Card bodies remain compact and unboxed. Pickup wraps onto its own seller row up to 1150px. The handover story uses two columns and stacks on phones.
 
-Pickup remains visible as comparison information. At widths up to 1150px, the seller area becomes a two-column grid and pickup occupies a full-width second row with wrapping text, rather than truncating beside the seller. Detail category metadata sits in the wrapping price/condition row below the item heading and subtitle.
-
-Forms pair a photo-upload column with fields on desktop, then stack on mobile. Paired fields stay side by side until below 360px. Dialogs fit within viewport margins and scroll vertically, with a one-column detail layout on mobile. Persistent mobile browse/saved/list navigation includes a safe-area inset; the page reserves bottom space for it. Mobile editable field text is 16px, with 44px save/close hit areas.
-
-Use the frontmatter spacing steps as the recurring rhythm; surface-specific gaps and padding follow the observed layouts rather than a fabricated global grid.
+Phone hero height is `calc(580px + 25vw)`, becoming 640px below 360px, so campus identity, search and motion control share the first screen. The lamp cutout hides on smaller layouts. Forms retain paired photo/field columns on desktop and stack on mobile; editable phone field text is 16px. Native dialogs scroll within the viewport. Fixed mobile navigation includes a safe-area inset and reserved page space.
 
 ## Elevation & Depth
 
-Cards remain flat on the page: photography, tonal grounds, whitespace, and rules provide separation. Soft shadows are limited to the exchange stamp, transient toast, and native dialog. There are no hard offset shadows.
+Photographic cutouts use soft drop shadows, overlaps, rotation and pointer depth. Orbit lines give the hero a sense of space; listing bodies remain flat. Dialogs and transient feedback retain soft elevation. Hard offset shadows are not part of this build.
 
 ### Shadow Vocabulary
-- **Exchange stamp:** `0 5px 14px #5223120a`, a faint lift under the circular mark.
-- **Dialog:** `0 22px 90px #122f3540`, with a `#102d2b80` backdrop separating the active task.
-- **Toast:** `0 8px 26px #173e3524`, a small floating confirmation surface.
+- **Hero search:** `0 10px 30px #39061c22`, a soft lift against maroon.
+- **Handover object:** `drop-shadow(0 13px 14px #62441f26)`, grounding the moving book.
+- **Dialog:** inherited `0 22px 90px #122f3540`; backdrop `#102d2b80`.
+- **Toast:** inherited `0 8px 26px #173e3524`.
 
-**The Flat Inventory Rule.** Keep the card body unboxed and shadowless; reserve elevation for overlays and the small exchange stamp.
+**The Object Depth Rule.** Give photographic cutouts soft depth and movement while keeping listing card bodies flat and shadowless.
 
 ## Shapes
 
-Photo wells and handover panels have gently rounded corners. Fields use tighter corners; buttons and category filters use pills. Circular save controls, avatars, and exchange marks repeat the circle motif without making every container circular. Dialogs have a larger radius, reduced on mobile. Borders are thin and quiet; the photo-upload boundary is dashed to communicate an input area.
+Posters and factual badges use near-square corners (2px); listing photo wells use 4px, filters 5px, actions 6px and hero search 8px. Existing form fields retain 7px corners and dialogs retain 16px desktop corners. Circular avatars, save controls, orbit lines and exchange marks carry the circle motif. Rectangular actions replace the former all-pill appearance.
 
 ## Components
 
 ### Buttons
 
-Compact, confident pills. Primary, dark, and light variants share the frontmatter geometry and a 48px minimum height. Capability-gated hover shifts their grounds; press scales to 0.975 over 120ms. Keyboard focus uses a 2px vermilion outline with 5px offset. Disabled actions lower opacity and show a waiting cursor.
+Compact rectangular actions use the frontmatter geometry and a 48px minimum height; the butter header action is 44px. Primary listing actions are raspberry, while the header and finale use butter against maroon. Press feedback scales to 0.975. Keyboard focus uses a 2px accent outline with 5px offset; controls on maroon use butter. Disabled states remain visible and non-interactive.
 
 ### Chips
 
-Horizontal category filters combine a small inline SVG icon and label. Their selected state reverses to forest/paper. Mobile chips provide a 44px minimum height and remain horizontally scrollable. Conditions use quiet, small rectangular badges; mint is not a semantic success signal.
+Category filters are compact rectangles with inline SVG icons. Selection reverses to maroon/paper; unselected backgrounds warm on hover. Phone targets remain at least 44px and categories scroll horizontally. Condition badges are small factual rectangles.
 
 ### Cards / Containers
 
-A photograph leads each unboxed listing. Condition and save controls sit inside the clipped photo well; factual category/sample metadata, item title and price, description, seller, and pickup follow. The seller group begins after a thin rule. Mobile save controls have 44px hit areas around smaller circular visible grounds. Preserve the full-width wrapping pickup row on narrower cards.
+A clipped photograph leads an unboxed listing. Condition and save controls sit in its corners; item facts, title, price, seller and pickup follow. The seller row starts with a fine rule. Mobile save controls retain 44px hit areas. Photo placeholders use blush and a clear no-photo explanation.
 
 ### Inputs / Fields
 
-Light field-paper grounds, quiet one-pixel borders, and compact rounded corners keep forms practical. The search field uses a shared enclosing border and a 2px forest focus-within outline. Other fields retain the global vermilion focus outline. Validation text is red and paired with a message; uploaded photos replace the mint placeholder while preserving a change/remove action.
+Light warm fields with quiet plum borders retain practical spacing and accent focus. Hero search is a paper panel with an inset butter submit button; submitting it filters the real inventory. Mobile search and form inputs use 16px text. Upload replaces its placeholder while preserving change/remove controls. Validation remains paired with explanatory text.
 
 ### Navigation
 
-Desktop navigation uses muted sans-serif labels with a forest active label and bottom rule. Mobile replaces it with fixed browse, saved, and list actions. Saved counts are quiet circular counters. Focus follows rerendered save controls; when removing an item from Saved removes its card, focus moves to the visible Saved navigation control, with the market region as fallback. Never target the hidden desktop navigation on mobile.
+Desktop navigation sits on maroon with muted pale labels and butter active text/rule. Mobile navigation sits on paper with maroon active state and a raspberry listing action. Save/remove rerenders preserve keyboard focus, using visible mobile navigation when a saved card disappears.
+
+### Campus Collage and Handover
+
+Product cutouts link to real sample details. Their drift lasts 6–8 seconds per cycle; mouse pointer depth adds a small independent translation. Hero lettering enters once through an 850ms clip reveal; the second line starts 110ms later. The ticker loops over 34 seconds. One pause control stops continuous decorative movement and pointer depth. Reduced-motion preference removes movement; keyboard navigation makes type entry immediate.
+
+Three explicit chapter buttons move the handover book over 650ms and update a polite live caption. Keyboard and reduced-motion modes suppress that transition. Scroll reveals run once, with 800ms section and 900ms poster entry. Content and actions remain complete without animation. Standard easing is `cubic-bezier(0.23, 1, 0.32, 1)`.
 
 ### Detail / Listing Dialogs
 
-The detail photograph and editorial heading lead. Category belongs beside price and condition below the heading, not as a decorative eyebrow. Sample notices distinguish illustrative inventory; local listings expose plain-text contact details with a copy action. Native dialog focus is restored on close. Keyboard navigation suppresses dialog entry animation so focus responds immediately.
-
-### Exchange Mark and Feedback
-
-The circular exchange-arrow SVG recurs in the identity, stamp, and handover panel. Saving a card produces a discrete scale pulse when pointer interaction and motion preferences permit it. Standard easing is `cubic-bezier(0.23, 1, 0.32, 1)`; dialog entry takes 220ms, toast entry 180ms, and photo hover 350ms. Filtering is immediate. Reduced-motion preference suppresses movement; hover treatments require a fine pointer with hover capability.
+Bricolage headings connect utility flows to the new identity. Category sits beside price and condition below the item heading. Sample notices distinguish demonstration listings; local listings expose contact details with a copy action. Native dialog focus returns on close; keyboard interaction suppresses its 220ms entry animation.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** use warm paper, forest ink, and selective vermilion with the self-hosted serif/sans pairing.
-- **Do** preserve photographic wells and flat card bodies with quiet rules.
-- **Do** keep condition, price, seller, and wrapping pickup visible when comparing items on mobile.
-- **Do** maintain visible keyboard focus through saves, removals, and dialog transitions.
-- **Do** label sample listings and explain browser-only persistence and illustrative photography.
+- **Do** carry maroon, butter and the self-hosted Bricolage Grotesque / DM Sans pairing across new surfaces.
+- **Do** keep cutout imagery, poster composition and motion grounded in real campus belongings.
+- **Do** keep price, condition, seller and wrapping pickup visible on mobile.
+- **Do** provide visible focus, immediate keyboard response, a motion pause control and reduced-motion support.
+- **Do** keep institutional identity, motion controls and prototype notices readable on phones.
 
 ### Don't:
-- **Don't** reintroduce the Pinterest/polaroid layout or a generic ecommerce dashboard.
-- **Don't** add card shadows or use mint as a fabricated success/verification signal.
-- **Don't** move detail taxonomy above the heading as a decorative eyebrow.
-- **Don't** imply verified accounts, shared marketplace activity, payments, or private messages in this local prototype.
-- **Don't** make a hover effect or animation necessary to use an action.
+- **Don't** return to the rejected forest/serif restrained catalogue or a generic ecommerce dashboard.
+- **Don't** shrink expressive display typography to an arbitrary 6rem maximum.
+- **Don't** turn metadata into decorative eyebrows or add hard offset shadows outside this visual world.
+- **Don't** imply official endorsement, verified accounts or shared marketplace activity in this browser-local prototype.
+- **Don't** require animation or hover to find content or complete an action.

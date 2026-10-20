@@ -24,7 +24,7 @@ Existing stack is JavaScript, CSS, Vite. Preserve search, categories, sorting, f
 
 ## Brand Commitments
 
-User requests a complete redesign from scratch with a distinctive, non-generic design grounded in purpose and audience. Existing name: FMS Circle; no requirement to retain the old visual language.
+User requests a complete redesign from scratch with a distinctive, non-generic design grounded in purpose and audience. Existing name: FMS Circle; no requirement to retain the old visual language. In the latest feedback, the user rejected the restrained catalogue and asked for unmistakable FMS identity, a fun landing page, and visible animation. Confirmed creative freedom for maroon/eagle identity, oversized type, and an animated campus handover collage.
 
 ## Evidence on Hand
 

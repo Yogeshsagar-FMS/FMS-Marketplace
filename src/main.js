@@ -1,4 +1,6 @@
 import "./style.css";
+import "./landing.css";
+import { landingIntro, landingEnding, initLanding } from "./landing.js";
 import { icon } from "./icons.js";
 import { categories, demoListings } from "./data.js";
 import {
@@ -50,29 +52,23 @@ const app = document.querySelector("#app");
 app.innerHTML = `
 <a class="skip-link" href="#market">Skip to listings</a>
 <header class="site-header"><div class="header-inner">
-  <a class="brand" href="#" aria-label="FMS Circle home">${icon("exchange", "brand-mark")}<span>fms<span class="brand-circle">circle</span><span class="brand-period">.</span></span></a>
+  <a class="brand" href="#" aria-label="FMS Circle home">${icon("exchange", "brand-mark")}<span>FMS<span class="brand-circle">CIRCLE</span><span class="brand-period">.</span></span></a>
   <nav class="desktop-nav" aria-label="Main navigation"><button data-view="explore" class="nav-button active">The marketplace</button><button data-view="saved" class="nav-button">Saved <span class="saved-count">0</span></button><button data-view="mine" class="nav-button">My listings</button></nav>
-  <div class="header-actions"><span class="campus-label">${icon("pin")} FMS, Delhi</span><button class="button button-accent header-sell" data-sell>${icon("plus")} List an item</button></div>
+  <div class="header-actions"><span class="campus-label">${icon("pin")} Faculty of Management Studies · Delhi</span><button class="button button-accent header-sell" data-sell>${icon("plus")} List an item</button></div>
 </div></header>
 <main>
-  <section class="hero shell" aria-labelledby="hero-title">
-    <div class="hero-copy"><h1 id="hero-title">New batch.<br><em>Same good stuff.</em></h1><p>Your senior’s bookshelf. Your next study lamp.<br>A little less new. A lot more campus.</p><a class="hero-link" href="#market">Find your next good thing <span>${icon("down")}</span></a>
-      <div class="hero-footnote"><span class="mini-exchange">${icon("exchange")}</span><span>The campus marketplace for<br><strong>FMS Delhi students.</strong></span></div>
-    </div>
-    <div class="hero-visual"><img class="hero-image" src="./images/campus-still-life.webp" alt="Books, headphones, a green lamp and a coffee mug ready for a new study corner" width="1536" height="1024" fetchpriority="high"/><span class="exchange-stamp" aria-hidden="true"><span>GOOD THINGS</span>${icon("exchange")}<span>GO AROUND</span></span><div class="hero-caption"><span>Pre-loved. Campus-ready.</span><span>Keep the good going. ${icon("diagonal")}</span></div></div>
-  </section>
-  <div class="principles shell"><span>${icon("pin")} Find it on campus.</span><span>${icon("exchange")} Give it a second chapter.</span><span>${icon("heart")} Keep it in the circle.</span></div>
+  ${landingIntro()}
   <section class="market shell" id="market" tabindex="-1" aria-labelledby="feed-title">
-    <div class="market-heading"><div><h2 id="feed-title">The good stuff<span>.</span></h2><p id="feed-description">From one campus life to the next.</p></div><button class="demo-label" data-about>${icon("info")} Demo marketplace <span>How it works ${icon("diagonal")}</span></button></div>
+    <div class="market-heading"><div><h2 id="feed-title">THE CAMPUS FINDS<span>.</span></h2><p id="feed-description">Good finds. Familiar faces. Pick it up on campus.</p></div><button class="demo-label" data-about>${icon("info")} Demo marketplace <span>How it works ${icon("diagonal")}</span></button></div>
     <div class="search-row"><label class="search-box" for="search">${icon("search")}<input id="search" type="search" placeholder="Books, a lamp, your next good find…" autocomplete="off"/><span class="search-shortcut" aria-hidden="true">/</span></label><button class="budget-button" id="budget" aria-pressed="false">Under ₹1,000 ${icon("plus")}</button><label class="condition-select">${icon("filter")}<span class="sr-only">Filter by condition</span><select id="condition"><option value="all">Any condition</option><option>Like new</option><option>Good</option><option>Well loved</option></select></label></div>
     <div class="filter-row"><div class="categories" aria-label="Listing categories">${categories.map((category) => `<button class="category ${category.name === "Everything" ? "selected" : ""}" data-category="${escape(category.name)}" aria-pressed="${category.name === "Everything"}">${icon(category.icon)}${escape(category.name)}</button>`).join("")}</div></div>
     <div class="results-row"><p id="result-count" role="status" aria-live="polite"></p><label class="sort-label">Sort by <select id="sort" aria-label="Sort listings"><option value="recommended">Campus picks</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option><option value="new">Newest first</option></select></label></div>
     <div id="grid" class="product-grid"></div>
     <div class="inventory-end" id="inventory-end"><span></span><p>Good finds deserve a second look.</p><span></span></div>
   </section>
-  <section class="handover shell" aria-labelledby="handover-title"><div class="handover-mark" aria-hidden="true">${icon("exchange")}</div><div class="handover-copy"><h2 id="handover-title">Moving on?<br><em>Pass something good on.</em></h2><p>That book you aced. The lamp that saw you through.<br>Someone’s first semester could use it.</p></div><div class="handover-action"><button class="button button-dark" data-sell>Give it a next chapter ${icon("arrow")}</button><span>A photo. A price. A new beginning.</span></div></section>
+  ${landingEnding()}
 </main>
-<footer class="shell site-footer"><a class="brand footer-brand" href="#">${icon("exchange", "brand-mark")}<span>fms<span class="brand-circle">circle</span>.</span></a><p>Less stuff left behind.<br>More good passed around.</p><div class="footer-links"><button data-about>About the circle ${icon("diagonal")}</button><span>Made for FMS, Delhi.</span></div><div class="prototype-note">A campus marketplace prototype. Sample inventory; your listings and saves stay in this browser.</div></footer>
+<footer class="shell site-footer"><a class="brand footer-brand" href="#">${icon("exchange", "brand-mark")}<span>FMS<span class="brand-circle">CIRCLE</span>.</span></a><p>Less stuff left behind.<br>More good passed around.</p><div class="footer-links"><button data-about>About the circle ${icon("diagonal")}</button><span>Made for FMS, Delhi.</span></div><div class="prototype-note">An independent student marketplace concept for FMS Delhi. Sample inventory; listings and saves stay in this browser. Not an official institute service.</div></footer>
 <nav class="mobile-nav" aria-label="Mobile navigation"><button data-view="explore" class="active">${icon("grid")}<span>Explore</span></button><button data-view="saved">${icon("heart")}<span>Saved <span class="saved-count">0</span></span></button><button class="mobile-sell" data-sell>${icon("plus")}<span>List an item</span></button><button data-view="mine">${icon("bag")}<span>My listings</span></button></nav>
 <dialog id="modal" aria-labelledby="dialog-title"></dialog>
 <div id="toast" role="status" aria-live="polite"></div>
@@ -116,12 +112,12 @@ function render() {
   });
   document.querySelector("#budget").setAttribute("aria-pressed", state.budget);
   document.querySelector("#feed-title").innerHTML = {
-    explore: "The good stuff<span>.</span>",
+    explore: "THE CAMPUS FINDS<span>.</span>",
     saved: "Worth keeping<span>.</span>",
     mine: "Your little corner<span>.</span>",
   }[state.view];
   document.querySelector("#feed-description").textContent = {
-    explore: "From one campus life to the next.",
+    explore: "Good finds. Familiar faces. Pick it up on campus.",
     saved: "The finds you have your eye on.",
     mine: "Good things you’re ready to pass on.",
   }[state.view];
@@ -429,6 +425,8 @@ document.addEventListener("click", (event) => {
   if (target.matches("[data-category]")) {
     state.category = target.dataset.category;
     render();
+    if (target.hasAttribute("data-collection"))
+      document.querySelector("#market").scrollIntoView();
     return;
   }
   if (target.matches("[data-view]")) {
@@ -524,3 +522,15 @@ window.addEventListener("storage", (event) => {
   }
 });
 render();
+
+initLanding({
+  onSearch: (query) => {
+    state.view = "explore";
+    resetFilters();
+    state.query = query;
+    search.value = query;
+    render();
+    document.querySelector("#market").scrollIntoView();
+    search.focus({ preventScroll: true });
+  },
+});
